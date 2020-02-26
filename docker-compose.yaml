@@ -1,0 +1,40 @@
+version: '3'
+services:
+  web:
+    container_name: php74
+    image: php:7.4-apache
+    volumes:
+      - ./www:/var/www/html/
+      - ./config/php.ini:/usr/local/etc/php/php.ini
+      - ./logs/php:/var/log/php/
+    ports:
+      - "80:80"
+#    depends_on:
+#      - database
+#    links:
+#     - db:db
+  
+  db:
+    container_name: mysql
+    image: mysql:5.7
+    volumes:
+      - ./mysql:/var/lib/mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+#      MYSQL_DATABASE: database
+#      MYSQL_USER: dbuser
+#      MYSQL_PASSWORD: dbpassword
+    ports:
+      - "3306:3306"
+  
+  myadmin:
+    container_name: phpmyadmin
+    image: phpmyadmin/phpmyadmin
+    ports:
+      - "8080:80"
+#    depends_on:
+#      - database
+#    links:
+#      - database:database
+
