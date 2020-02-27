@@ -9,8 +9,6 @@ services:
       - ./logs/php:/var/log/php/
     ports:
       - "80:80"
-#    depends_on:
-#      - database
 #    links:
 #     - db:db
   
