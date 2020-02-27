@@ -1,6 +1,6 @@
 <?php
 
-echo "Hello World on Docker";
+echo "Hello World from Docker";
 phpinfo();
 
 ?>

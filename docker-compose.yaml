@@ -1,20 +1,24 @@
 version: '3'
 services:
   web:
-    container_name: php74
-    image: php:7.4-apache
+    container_name: php
+#    image: mchauvel/php-pdo-mysql
+    image: php-build:7.4-apache
+#    image: php:7.4-apache
+    build: ./docker/php
     volumes:
       - ./www:/var/www/html/
       - ./config/php.ini:/usr/local/etc/php/php.ini
       - ./logs/php:/var/log/php/
     ports:
       - "80:80"
-#    links:
-#     - db:db
+    links:
+     - db:db
   
   db:
     container_name: mysql
     image: mysql:5.7
+    command: --default-authentication-plugin=mysql_native_password
     volumes:
       - ./mysql:/var/lib/mysql
     restart: always
